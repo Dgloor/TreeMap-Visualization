@@ -25,4 +25,8 @@ class TreeNode<T> {
     public void addChild(Tree newTree){
         this.children.add(newTree);
     }
+    public void setSize(long size){
+        this.size=size;
+    }
+    
 }

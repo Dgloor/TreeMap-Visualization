@@ -1,5 +1,6 @@
 package tda;
 
+import java.io.File;
 import java.util.LinkedList;
 
 /**
@@ -43,6 +44,28 @@ public class Tree<T> {
     public LinkedList<T> postOrder(){
         LinkedList<T> elementos = new LinkedList<>();
         return elementos;
+    }
+    
+    public Tree<String> createDirectoryTree(File path){
+         if(!path.exists()){
+            return null;
+        }else{
+            Tree<String> mapa=new Tree<>();
+            mapa.setRoot(path.getAbsolutePath());
+            mapa.root.setSize(path.getTotalSpace());
+            if(path.isDirectory()){
+                  File[] childrens=path.listFiles();
+                  if (childrens!=null && childrens.length>0){
+                       for(File children: childrens){
+                      Tree<String> subTree=createDirectoryTree(children);
+                      mapa.root.addChild(subTree);
+                  }
+                  }
+                  return mapa;
+            }else{              
+                return mapa;
+            }
+        }
     }
         
     @Override
