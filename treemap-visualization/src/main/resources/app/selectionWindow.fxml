@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SelectionWindowController">
+<AnchorPane id="AnchorPane" prefHeight="247.0" prefWidth="412.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SelectionWindowController">
    <children>
-      <Button fx:id="botonArchivo" defaultButton="true" layoutX="236.0" layoutY="183.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="129.0" text="Seleccionar">
+      <Button fx:id="botonArchivo" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="122.0" layoutY="131.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="169.0" text="Search" textAlignment="CENTER">
          <font>
-            <Font name="Arial" size="15.0" />
+            <Font size="16.0" />
          </font>
       </Button>
-      <Label layoutX="134.0" layoutY="74.0" prefHeight="84.0" prefWidth="333.0" text="Busca y selecciona una carpeta a Mapear">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="63.0" prefHeight="40.0" prefWidth="338.0" text="TreeMap Visualization" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
    </children>
