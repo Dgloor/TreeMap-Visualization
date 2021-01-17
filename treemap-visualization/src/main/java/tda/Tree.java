@@ -1,6 +1,5 @@
 package tda;
 
-import java.io.File;
 import java.util.LinkedList;
 
 /**
@@ -9,18 +8,34 @@ import java.util.LinkedList;
  * @param <T>
  */
 public class Tree<T> {
-    private TreeNode<T> root;
+    TreeNode<T> root;
     
     public Tree(T content){
-        this.root = new TreeNode(content);
+        this.root = new TreeNode<>(content);
     }
     
     public Tree(){
         this.root = null;
     }
+
+    public T getRoot() {
+        return root.getContent();
+    }
     
     public void setRoot(T content){
         this.root = new TreeNode(content);
+    }
+    
+    public LinkedList<Tree<T>> getChildren(){
+        return root.children;
+    }
+    
+    public void setIsFile(boolean b){
+        root.setIsFile(b);
+    }
+    
+    public void setSize(long l){
+        root.setSize(l);
     }
     
     public boolean isEmpty(){
@@ -46,30 +61,13 @@ public class Tree<T> {
         return elementos;
     }
     
-    public Tree<String> createDirectoryTree(File path){
-         if(!path.exists()){
-            return null;
-        }else{
-            Tree<String> mapa=new Tree<>();
-            mapa.setRoot(path.getAbsolutePath());
-            mapa.root.setSize(path.getTotalSpace());
-            if(path.isDirectory()){
-                  File[] childrens=path.listFiles();
-                  if (childrens!=null && childrens.length>0){
-                       for(File children: childrens){
-                      Tree<String> subTree=createDirectoryTree(children);
-                      mapa.root.addChild(subTree);
-                  }
-                  }
-                  return mapa;
-            }else{              
-                return mapa;
-            }
-        }
+    public void imprimir(){
+        System.out.println(root);
+        System.out.println(root.children);
     }
         
     @Override
     public String toString() {
-        return "";
+        return "[" + root.getContent() + " - " + root.size() + "]";
     }    
 }

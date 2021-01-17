@@ -5,10 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="app.SelectionWindowController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SelectionWindowController">
    <children>
-      <Button fx:id="botonArchivo" onMouseClicked="#seleccionarArchivo" defaultButton="true" layoutX="236.0" layoutY="183.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="129.0" text="Seleccionar">
+      <Button fx:id="botonArchivo" defaultButton="true" layoutX="236.0" layoutY="183.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="129.0" text="Seleccionar">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
