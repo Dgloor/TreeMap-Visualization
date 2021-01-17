@@ -30,14 +30,6 @@ public class Tree<T> {
         return root.children;
     }
     
-    public void setIsFile(boolean b){
-        root.setIsFile(b);
-    }
-    
-    public void setSize(long l){
-        root.setSize(l);
-    }
-    
     public boolean isEmpty(){
         return root == null;
     }
@@ -68,6 +60,6 @@ public class Tree<T> {
         
     @Override
     public String toString() {
-        return "[" + root.getContent() + " - " + root.size() + "]";
+        return "[" + root.getContent() + "]";
     }    
 }

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.DirectoryChooser;
+import model.TreeMap;
 
 /**
  * FXML Controller class
@@ -30,8 +31,7 @@ public class SelectionWindowController implements Initializable {
         buscarDirectorio.setTitle("Elegir directorio");
         File selectedDirectory = buscarDirectorio.showDialog(null);
         TreeMap tm = new TreeMap(selectedDirectory);
-        tm.mapeo.imprimir();
-        //directoryTree = directoryTree.createDirectoryTree(selectedDirectory);
-
+        tm.draw();
+        //directoryTree = directoryTree.createDirectoryTree(selectedDirectory);;
     }
 }
