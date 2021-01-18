@@ -8,7 +8,7 @@ import java.util.LinkedList;
  * @param <T>
  */
 public class Tree<T> {
-    TreeNode<T> root;
+    private TreeNode<T> root;
     
     public Tree(T content){
         this.root = new TreeNode<>(content);
@@ -27,11 +27,15 @@ public class Tree<T> {
     }
     
     public LinkedList<Tree<T>> getChildren(){
-        return root.children;
+        return root.getChildren();
     }
     
     public boolean isEmpty(){
         return root == null;
+    }
+    
+    public boolean isLeaf(){
+        return root.getChildren().isEmpty();
     }
     
     public void clear(){
@@ -55,7 +59,7 @@ public class Tree<T> {
     
     public void imprimir(){
         System.out.println(root);
-        System.out.println(root.children);
+        System.out.println(root.getChildren());
     }
         
     @Override

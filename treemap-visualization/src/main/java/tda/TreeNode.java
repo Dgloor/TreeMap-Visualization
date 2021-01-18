@@ -8,18 +8,22 @@ import java.util.LinkedList;
  */
 class TreeNode<T> {
     private T content;
-    LinkedList<Tree<T>> children;
+    private LinkedList<Tree<T>> children;
 
     
     public TreeNode(T content){
         this.content = content;
-        children = new LinkedList<>();
+        this.children = new LinkedList<>();
     }
 
     public T getContent() {
         return content;
     }
 
+    public LinkedList<Tree<T>> getChildren(){
+        return children;
+    }
+    
     public void addChild(T content){
         this.children.add(new Tree(content));
     }
