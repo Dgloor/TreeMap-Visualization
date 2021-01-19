@@ -16,34 +16,35 @@ import javafx.scene.paint.Color;
  */
 public class ColorAssigner {
 
-    public static ArrayList<String> extensions = createExtensions();
+    public static ArrayList<String> commonExtensions = createExtensions();
     public static HashMap<String, Color> colorMap = fullColorMap();
     
     public ColorAssigner(){
         fullColorMap();
     }
     
-    public Color getColor(String extension){
-        if(!extensions.contains(extension)){
+    public static Color getColor(String extension){
+        extension=extension.toLowerCase();
+        if(!colorMap.keySet().contains(extension)){
             setColor(extension,colorMap);
         }
         return colorMap.get(extension);
     }
     
     private static ArrayList<String> createExtensions(){
-        if(extensions == null){
+        if(commonExtensions == null){
             ArrayList<String> extensionsArray= new ArrayList<>();
             addCommonExtensions(extensionsArray);
             return extensionsArray;
         }else{
-            return extensions;
+            return commonExtensions;
         }
         
     }
     
     private static HashMap<String,Color> fullColorMap(){
         HashMap<String,Color> map= new HashMap<>();
-        for(String extension : extensions){
+        for(String extension : commonExtensions){
             setColor(extension, map);
         }
         return map;
@@ -51,10 +52,9 @@ public class ColorAssigner {
     
     private static void setColor(String extension , HashMap<String,Color> map){
         extension=extension.toLowerCase();
-        if(extensions.contains(extension)){
             Random rand=new Random();
             map.put(extension, Color.color(rand.nextFloat(),rand.nextFloat(),rand.nextFloat()));
-        }
+        
     }
 
     private static void addCommonExtensions(ArrayList<String> array) {
