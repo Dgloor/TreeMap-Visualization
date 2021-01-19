@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.stage.StageStyle;
+import miscellaneous.ColorAssigner;
 
 /**
  * JavaFX App
@@ -35,6 +36,10 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        for(String elemento: ColorAssigner.extensions){
+            System.out.println(elemento);
+        }
+        ColorAssigner.colorMap.forEach((k,v)->System.out.println("Key :" +k +" Valor :"+v));
         launch();
     }
 
