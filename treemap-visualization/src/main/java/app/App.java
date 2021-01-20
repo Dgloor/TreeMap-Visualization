@@ -22,7 +22,7 @@ public class App extends Application {
         stage.centerOnScreen();
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.show();
     }
 
