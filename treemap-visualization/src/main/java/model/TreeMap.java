@@ -68,9 +68,26 @@ public class TreeMap {
         Background bg = new Background(bgFill);
         pane.setBackground(bg);
     }
+    
+    public void setPaneTitle(Pane pane, Pesable p) {
+        String title = p.toString();
+        Label lb = new Label(title);
+       
+         
+        BackgroundFill bgFill = new BackgroundFill(
+                ColorAssigner.getColor(p.getName()),
+                CornerRadii.EMPTY,
+                Insets.EMPTY);
+        Background bg = new Background(bgFill);
+        
+        lb.setBackground(bg);
+        
+        base.getChildren().add(lb);
+    }
 
     private void rellenar(Tree<Pesable> a, Pane base) {
-        base.getChildren().add(new Label(a.getRoot().getName()));
+        setPaneTitle(base, a.getRoot());
+        
         if (base instanceof VBox) {
             for (Tree<Pesable> p : a.getChildren()) {
                 HBox hb = new HBox();
