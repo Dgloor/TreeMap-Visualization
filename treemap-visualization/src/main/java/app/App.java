@@ -18,7 +18,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("selectionWindow"));
+        scene = new Scene(loadFXML("selectionWindow"), 1280, 720);
         stage.centerOnScreen();
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -26,7 +26,7 @@ public class App extends Application {
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
