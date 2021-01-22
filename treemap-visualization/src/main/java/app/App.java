@@ -36,12 +36,6 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        for(String elemento: ColorAssigner.commonExtensions){
-            System.out.println(elemento);
-        }
-        ColorAssigner.getColor(".jeje");
-        ColorAssigner.colorMap.forEach((k,v)->System.out.println("Key :" +k +" Valor :"+v));
-        
         launch();
     }
 
