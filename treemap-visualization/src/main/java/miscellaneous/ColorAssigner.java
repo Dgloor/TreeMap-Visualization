@@ -18,43 +18,45 @@ public class ColorAssigner {
 
     public static ArrayList<String> commonExtensions = createExtensions();
     public static HashMap<String, Color> colorMap = fullColorMap();
-    
-    public ColorAssigner(){
+
+    public ColorAssigner() {
         fullColorMap();
     }
-    
-    public static Color getColor(String extension){
-        extension=extension.toLowerCase();
-        if(!colorMap.keySet().contains(extension)){
-            setColor(extension,colorMap);
+
+    public static Color getColor(String filename) {
+        if (filename.indexOf(".") != -1) {
+            String extension = filename.split("\\.")[1];
+            extension = extension.toLowerCase();
+            if (!colorMap.keySet().contains(extension)) {
+                setColor(extension, colorMap);
+            }
+            return colorMap.get(extension);
         }
-        return colorMap.get(extension);
+        return null;
     }
-    
-    private static ArrayList<String> createExtensions(){
-        if(commonExtensions == null){
-            ArrayList<String> extensionsArray= new ArrayList<>();
+
+    private static ArrayList<String> createExtensions() {
+        if (commonExtensions == null) {
+            ArrayList<String> extensionsArray = new ArrayList<>();
             addCommonExtensions(extensionsArray);
             return extensionsArray;
-        }else{
+        } else {
             return commonExtensions;
         }
-        
     }
-    
-    private static HashMap<String,Color> fullColorMap(){
-        HashMap<String,Color> map= new HashMap<>();
-        for(String extension : commonExtensions){
+
+    private static HashMap<String, Color> fullColorMap() {
+        HashMap<String, Color> map = new HashMap<>();
+        for (String extension : commonExtensions) {
             setColor(extension, map);
         }
         return map;
     }
-    
-    private static void setColor(String extension , HashMap<String,Color> map){
-        extension=extension.toLowerCase();
-            Random rand=new Random();
-            map.put(extension, Color.color(rand.nextFloat(),rand.nextFloat(),rand.nextFloat()));
-        
+
+    private static void setColor(String extension, HashMap<String, Color> map) {
+        extension = extension.toLowerCase();
+        Random rand = new Random();
+        map.put(extension, Color.color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat()));
     }
 
     private static void addCommonExtensions(ArrayList<String> array) {
@@ -89,7 +91,5 @@ public class ColorAssigner {
         array.add(".iso");
         array.add(".mds");
         array.add(".img");
-
     }
-
 }

@@ -1,5 +1,7 @@
 package model;
 
+import miscellaneous.ColorAssigner;
+
 import app.App;
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +21,7 @@ import tda.Tree;
  * @author Mario Chalén
  */
 public class TreeMap {
-    
+
     public static HBox base;
     public Tree<Pesable> tree;
     static Random r;
@@ -29,7 +31,7 @@ public class TreeMap {
         r = new Random();
     }
 
-    private Tree<Pesable> createDirectoryTree(File f) {      
+    private Tree<Pesable> createDirectoryTree(File f) {
         Tree<Pesable> t = new Tree<>();
         t.setRoot(new Directorio(f.getName(), size(f)));
         for (String elemento : f.list()) {
@@ -53,45 +55,52 @@ public class TreeMap {
         }
         rellenar(tree, TreeMap.base);
     }
-    
-    private void rellenar(Tree<Pesable> a, Pane base){
-        if (base instanceof VBox){
-            for(Tree<Pesable> p : a.getChildren()){
+
+    public void setPaneColor(Pane pane, Pesable p) {
+        BackgroundFill bgFill = new BackgroundFill(
+                ColorAssigner.getColor(p.getName()),
+                CornerRadii.EMPTY,
+                Insets.EMPTY);
+        Background bg = new Background(bgFill);
+        pane.setBackground(bg);
+    }
+
+    private void rellenar(Tree<Pesable> a, Pane base) {
+        if (base instanceof VBox) {
+            for (Tree<Pesable> p : a.getChildren()) {
                 HBox hb = new HBox();
-                hb.setPrefHeight(base.getPrefHeight()*((double)p.getRoot().getWeight()/a.getRoot().getWeight()));
+                hb.setSpacing(1);
+                hb.setPrefHeight(base.getPrefHeight() * ((double) p.getRoot().getWeight() / a.getRoot().getWeight()));
                 hb.setPrefWidth(base.getPrefWidth());
-                //La siguiente línea fija un color aleatorio para el rectángulo
-                hb.setBackground(new Background(new BackgroundFill(Color.rgb(r.nextInt(255), r.nextInt(255), r.nextInt(255)),
-    CornerRadii.EMPTY,
-    Insets.EMPTY)));
+
+                setPaneColor(hb, p.getRoot());
+
                 base.getChildren().add(hb);
-                if (!p.isLeaf()){
+                if (!p.isLeaf()) {
                     rellenar(p, hb);
                 }
             }
-        }
-        else if (base instanceof HBox){
-            for(Tree<Pesable> p : a.getChildren()){
+        } else if (base instanceof HBox) {
+            for (Tree<Pesable> p : a.getChildren()) {
                 VBox vb = new VBox();
-                vb.setPrefWidth(base.getPrefWidth()*((double)p.getRoot().getWeight()/a.getRoot().getWeight()));
+                vb.setSpacing(1);
+                vb.setPrefWidth(base.getPrefWidth() * ((double) p.getRoot().getWeight() / a.getRoot().getWeight()));
                 vb.setPrefHeight(base.getPrefHeight());
-                //La siguiente línea fija un color aleatorio para el rectángulo
-                vb.setBackground(new Background(new BackgroundFill(Color.rgb(r.nextInt(255), r.nextInt(255), r.nextInt(255)),
-    CornerRadii.EMPTY,
-    Insets.EMPTY)));
+                
+                setPaneColor(vb, p.getRoot());
+               
                 base.getChildren().add(vb);
-                if (!p.isLeaf()){
+                if (!p.isLeaf()) {
                     rellenar(p, vb);
                 }
             }
         }
     }
 
-    private long size(File f){
+    private long size(File f) {
         if (f.isFile()) {
             return f.length();
-        }
-        else {
+        } else {
             long totalSize = 0;
             for (String elemento : f.list()) {
                 File newFile = new File(f.getAbsolutePath() + "/" + elemento);

@@ -1,30 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="264.0" prefWidth="436.0" style="-fx-background-color: #191A1B;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SelectionWindowController">
-   <children>
-      <Label alignment="CENTER" centerShape="false" contentDisplay="CENTER" layoutX="49.0" layoutY="81.0" prefHeight="40.0" prefWidth="338.0" text="TreeMap Visualization" textAlignment="CENTER" textFill="#e5e9e0">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Label>
-      <JFXButton fx:id="botonArchivo" buttonType="RAISED" focusTraversable="false" layoutX="136.0" layoutY="149.0" prefHeight="40.0" prefWidth="164.0" style="-fx-background-color: #0A4122;" text="Search" textFill="#e5e9e0">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="49.0" layoutY="46.0" prefHeight="40.0" prefWidth="338.0" text="JavaFx" textAlignment="CENTER" textFill="#247646">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-   </children>
-</AnchorPane>
+<BorderPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SelectionWindowController">
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="338.0" text="JavaFx" textAlignment="CENTER" textFill="#666ad1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" centerShape="false" contentDisplay="CENTER" prefHeight="58.0" prefWidth="644.0" text="TreeMap Visualization" textAlignment="CENTER" textFill="#e5e9e0">
+               <font>
+                  <Font name="System Bold" size="42.0" />
+               </font>
+               <padding>
+                  <Insets bottom="15.0" />
+               </padding>
+            </Label>
+            <JFXButton fx:id="botonArchivo" buttonType="RAISED" focusTraversable="false" prefHeight="42.0" prefWidth="154.0" style="-fx-background-color: #39399F;" text="Search" textFill="#e5e9e0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
