@@ -24,7 +24,7 @@ public class ColorAssigner {
     }
 
     public static Color getColor(String filename) {
-        if (filename.indexOf(".") != -1) {
+        if (filename.contains(".")) {
             String extension = filename.split("\\.")[1];
             extension = extension.toLowerCase();
             if (!colorMap.keySet().contains(extension)) {

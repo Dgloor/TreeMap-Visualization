@@ -35,19 +35,19 @@ public class TreeMap {
     private Tree<Pesable> createDirectoryTree(File f) {
         Tree<Pesable> t = new Tree<>();
         t.setRoot(new Directorio(f.getName(), size(f)));
-        if(f.list() !=null ){
+        if (f.list() != null) {
             for (String elemento : f.list()) {
-            File newFile = new File(f.getAbsolutePath() + "/" + elemento);
-            Tree<Pesable> newTree;
-            if (newFile.isDirectory()) {
-                newTree = createDirectoryTree(newFile);
-            } else {
-                newTree = new Tree<>(new Archivo(newFile.getName(), newFile.length()));
+                File newFile = new File(f.getAbsolutePath() + "/" + elemento);
+                Tree<Pesable> newTree;
+                if (newFile.isDirectory()) {
+                    newTree = createDirectoryTree(newFile);
+                } else {
+                    newTree = new Tree<>(new Archivo(newFile.getName(), newFile.length()));
+                }
+                t.getChildren().add(newTree);
             }
-            t.getChildren().add(newTree);
         }
-        }
-        
+
         return t;
     }
 
@@ -68,29 +68,33 @@ public class TreeMap {
         Background bg = new Background(bgFill);
         pane.setBackground(bg);
     }
-    
+
     public void setPaneTitle(Pane pane, Pesable p) {
         String title = p.toString();
         Label lb = new Label(title);
-       
-         
+        lb.setTextFill(Color.WHITE);
         BackgroundFill bgFill = new BackgroundFill(
-                ColorAssigner.getColor(p.getName()),
+                Color.BLACK,
                 CornerRadii.EMPTY,
                 Insets.EMPTY);
         Background bg = new Background(bgFill);
-        
-        lb.setBackground(bg);
-        
-        base.getChildren().add(lb);
+
+        VBox vb = new VBox(lb);
+        vb.setBackground(bg);
+
+        pane.getChildren().add(vb);
     }
 
     private void rellenar(Tree<Pesable> a, Pane base) {
-        setPaneTitle(base, a.getRoot());
-        
         if (base instanceof VBox) {
-            for (Tree<Pesable> p : a.getChildren()) {
+            for (int i = 0; i < a.getChildren().size(); i++) {
+                Tree<Pesable> p = a.getChildren().get(i);
                 HBox hb = new HBox();
+
+                if (i == 0) {
+                    setPaneTitle(hb, a.getRoot());
+                }
+
                 hb.setSpacing(2);
                 hb.setPrefHeight(base.getPrefHeight() * ((double) p.getRoot().getWeight() / a.getRoot().getWeight()));
                 hb.setPrefWidth(base.getPrefWidth());
@@ -103,8 +107,14 @@ public class TreeMap {
                 }
             }
         } else if (base instanceof HBox) {
-            for (Tree<Pesable> p : a.getChildren()) {
+            for (int i = 0; i < a.getChildren().size(); i++) {
+                Tree<Pesable> p = a.getChildren().get(i);
                 VBox vb = new VBox();
+
+                if (i == 0) {
+                    setPaneTitle(vb, a.getRoot());
+                }
+
                 vb.setSpacing(2);
                 vb.setPrefWidth(base.getPrefWidth() * ((double) p.getRoot().getWeight() / a.getRoot().getWeight()));
                 vb.setPrefHeight(base.getPrefHeight());
@@ -120,17 +130,17 @@ public class TreeMap {
     }
 
     private long size(File f) {
-        if(f.isDirectory()){
-            long totalSize=0;
+        if (f.isDirectory()) {
+            long totalSize = 0;
             File[] childrens = f.listFiles();
-            if(childrens!=null && childrens.length>0){
-                 for(File children:childrens){
-                totalSize+= size(children);            
+            if (childrens != null && childrens.length > 0) {
+                for (File children : childrens) {
+                    totalSize += size(children);
+                }
             }
-            }     
             return totalSize;
-        }else{
-        return f.length();
+        } else {
+            return f.length();
         }
     }
 }

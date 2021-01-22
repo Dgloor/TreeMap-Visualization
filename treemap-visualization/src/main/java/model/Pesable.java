@@ -4,7 +4,7 @@ package model;
  *
  * @author Danny Loor
  */
-public abstract class Pesable {
+public class Pesable {
     private String name;
     private Long weight;
 
@@ -29,17 +29,17 @@ public abstract class Pesable {
         this.weight = weight;
     }
     
-    public double getKB(){
+    public double getWeightKB(){
         double d = (double) weight/1024;
         return (double)((int)(d*10))/10;
     }
     
-    public double getMB(){
+    public double getWeightMB(){
         double d = (double)(weight/1024)/1024;
         return (double)((int)(d*10))/10;
     }
     
-    public double getGB(){
+    public double getWeightGB(){
         double d = (double)((weight/1024)/1024)/1024;
         return (double)((int)(d*100))/100;
     }
@@ -47,11 +47,11 @@ public abstract class Pesable {
     @Override
     public String toString() {
         if (weight > (Math.pow(1024, 3))){
-            return name + " - " + getGB() + " GB";
+            return name + " - " + getWeightGB() + " GB";
         }
         else if (weight < (Math.pow(1024, 2))){
-            return name + " - " + getKB() + " KB";
+            return name + " - " + getWeightKB() + " KB";
         }
-        return name + " - " + getMB() + " MB";
+        return name + " - " + getWeightMB() + " MB";
     }
 }

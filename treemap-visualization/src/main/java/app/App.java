@@ -19,7 +19,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("selectionWindow"));
         stage.centerOnScreen();
         stage.setScene(scene);
-//        stage.setMaximized(true);
+        stage.setMaximized(true);
         stage.show();
     }
 
