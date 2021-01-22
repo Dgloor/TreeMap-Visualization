@@ -6,8 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import javafx.stage.StageStyle;
-import miscellaneous.ColorAssigner;
 
 /**
  * JavaFX App
@@ -21,12 +19,11 @@ public class App extends Application {
         scene = new Scene(loadFXML("selectionWindow"));
         stage.centerOnScreen();
         stage.setScene(scene);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setResizable(false);
+//        stage.setMaximized(true);
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
