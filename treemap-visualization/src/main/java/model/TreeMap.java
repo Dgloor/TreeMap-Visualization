@@ -34,7 +34,8 @@ public class TreeMap {
     private Tree<Pesable> createDirectoryTree(File f) {
         Tree<Pesable> t = new Tree<>();
         t.setRoot(new Directorio(f.getName(), size(f)));
-        for (String elemento : f.list()) {
+        if(f.list() !=null ){
+            for (String elemento : f.list()) {
             File newFile = new File(f.getAbsolutePath() + "/" + elemento);
             Tree<Pesable> newTree;
             if (newFile.isDirectory()) {
@@ -44,6 +45,8 @@ public class TreeMap {
             }
             t.getChildren().add(newTree);
         }
+        }
+        
         return t;
     }
 
@@ -86,9 +89,9 @@ public class TreeMap {
                 vb.setSpacing(1);
                 vb.setPrefWidth(base.getPrefWidth() * ((double) p.getRoot().getWeight() / a.getRoot().getWeight()));
                 vb.setPrefHeight(base.getPrefHeight());
-                
+
                 setPaneColor(vb, p.getRoot());
-               
+
                 base.getChildren().add(vb);
                 if (!p.isLeaf()) {
                     rellenar(p, vb);
@@ -98,15 +101,17 @@ public class TreeMap {
     }
 
     private long size(File f) {
-        if (f.isFile()) {
-            return f.length();
-        } else {
-            long totalSize = 0;
-            for (String elemento : f.list()) {
-                File newFile = new File(f.getAbsolutePath() + "/" + elemento);
-                totalSize += size(newFile);
+        if(f.isDirectory()){
+            long totalSize=0;
+            File[] childrens = f.listFiles();
+            if(childrens!=null && childrens.length>0){
+                 for(File children:childrens){
+                totalSize+= size(children);            
             }
+            }     
             return totalSize;
+        }else{
+        return f.length();
         }
     }
 }
