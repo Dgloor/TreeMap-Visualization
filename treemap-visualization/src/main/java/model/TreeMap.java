@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -66,10 +67,11 @@ public class TreeMap {
     }
 
     private void rellenar(Tree<Pesable> a, Pane base) {
+        base.getChildren().add(new Label(a.getRoot().getName()));
         if (base instanceof VBox) {
             for (Tree<Pesable> p : a.getChildren()) {
                 HBox hb = new HBox();
-                hb.setSpacing(1);
+                hb.setSpacing(2);
                 hb.setPrefHeight(base.getPrefHeight() * ((double) p.getRoot().getWeight() / a.getRoot().getWeight()));
                 hb.setPrefWidth(base.getPrefWidth());
 
@@ -83,7 +85,7 @@ public class TreeMap {
         } else if (base instanceof HBox) {
             for (Tree<Pesable> p : a.getChildren()) {
                 VBox vb = new VBox();
-                vb.setSpacing(1);
+                vb.setSpacing(2);
                 vb.setPrefWidth(base.getPrefWidth() * ((double) p.getRoot().getWeight() / a.getRoot().getWeight()));
                 vb.setPrefHeight(base.getPrefHeight());
                 
