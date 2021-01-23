@@ -5,6 +5,7 @@ package model;
  * @author Danny Loor
  */
 public class Pesable {
+
     private String name;
     private Long weight;
 
@@ -12,7 +13,7 @@ public class Pesable {
         this.name = name;
         this.weight = weight;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -28,28 +29,27 @@ public class Pesable {
     public void Long(Long weight) {
         this.weight = weight;
     }
-    
-    public double getWeightKB(){
-        double d = (double) weight/1024;
-        return (double)((int)(d*10))/10;
+
+    public double getWeightKB() {
+        double d = (double) weight / 1024;
+        return (double) ((int) (d * 10)) / 10;
     }
-    
-    public double getWeightMB(){
-        double d = (double)(weight/1024)/1024;
-        return (double)((int)(d*10))/10;
+
+    public double getWeightMB() {
+        double d = (double) (weight / 1024) / 1024;
+        return (double) ((int) (d * 10)) / 10;
     }
-    
-    public double getWeightGB(){
-        double d = (double)((weight/1024)/1024)/1024;
-        return (double)((int)(d*100))/100;
+
+    public double getWeightGB() {
+        double d = (double) ((weight / 1024) / 1024) / 1024;
+        return (double) ((int) (d * 100)) / 100;
     }
 
     @Override
     public String toString() {
-        if (weight > (Math.pow(1024, 3))){
+        if (weight > (Math.pow(1024, 3))) {
             return name + " - " + getWeightGB() + " GB";
-        }
-        else if (weight < (Math.pow(1024, 2))){
+        } else if (weight < (Math.pow(1024, 2))) {
             return name + " - " + getWeightKB() + " KB";
         }
         return name + " - " + getWeightMB() + " MB";

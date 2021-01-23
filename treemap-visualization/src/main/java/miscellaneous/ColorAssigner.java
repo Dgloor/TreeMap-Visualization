@@ -47,9 +47,9 @@ public class ColorAssigner {
 
     private static HashMap<String, Color> fullColorMap() {
         HashMap<String, Color> map = new HashMap<>();
-        for (String extension : commonExtensions) {
+        commonExtensions.forEach((extension) -> {
             setColor(extension, map);
-        }
+        });
         return map;
     }
 

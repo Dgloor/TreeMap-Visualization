@@ -1,4 +1,4 @@
-package tda;
+package model;
 
 import java.util.LinkedList;
 
@@ -7,11 +7,11 @@ import java.util.LinkedList;
  * @author Mario Chalén
  */
 class TreeNode<T> {
+
     private T content;
     private LinkedList<Tree<T>> children;
 
-    
-    public TreeNode(T content){
+    public TreeNode(T content) {
         this.content = content;
         this.children = new LinkedList<>();
     }
@@ -20,20 +20,20 @@ class TreeNode<T> {
         return content;
     }
 
-    public LinkedList<Tree<T>> getChildren(){
+    public LinkedList<Tree<T>> getChildren() {
         return children;
     }
-    
-    public void addChild(T content){
+
+    public void addChild(T content) {
         this.children.add(new Tree(content));
     }
-    
-    public void addChild(Tree newTree){
+
+    public void addChild(Tree newTree) {
         this.children.add(newTree);
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return content.toString();
     }
 }

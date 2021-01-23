@@ -30,7 +30,7 @@ public class SelectionWindowController implements Initializable {
         DirectoryChooser buscarDirectorio = new DirectoryChooser();
         buscarDirectorio.setTitle("Elegir directorio");
         File selectedDirectory = buscarDirectorio.showDialog(null);
-        if (selectedDirectory != null){
+        if (selectedDirectory != null) {
             TreeMap tm = new TreeMap(selectedDirectory);
             tm.draw();
         }

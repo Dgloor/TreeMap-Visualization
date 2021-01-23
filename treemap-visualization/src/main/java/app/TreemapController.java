@@ -11,20 +11,20 @@ import model.TreeMap;
 /**
  * FXML Controller class
  *
- * @author Mario Chalén
+ * @author Danny Loor
  */
 public class TreemapController implements Initializable {
 
-    @FXML HBox base;
-    
-    
+    @FXML
+    HBox base;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         base.setSpacing(2);
-        TreeMap.base = base; 
+        TreeMap.base = base;
         setExitEvent();
     }
-    
+
     public void setExitEvent() {
         App.scene.setOnKeyPressed(event -> {
             if ("ESCAPE".equals(event.getCode().toString())) {
