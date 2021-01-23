@@ -5,12 +5,29 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SelectionWindowController">
+<BorderPane fx:id="baseScreen" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SelectionWindowController">
+    <top>
+        <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="31.0" prefWidth="1100.0" style="-fx-background-color: #181818;" BorderPane.alignment="CENTER">
+            <children>
+                <HBox id="hboxBotones" alignment="CENTER" prefWidth="52.0" spacing="5.0">
+                    <children>
+                        <Circle id="btnClose" fx:id="btnClose" fill="#cd234b" onMouseClicked="#handleClose" radius="9.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Circle id="btnMinimize" fx:id="btnMinimize" fill="#c39d2d" onMouseClicked="#handleMin" radius="9.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
+                    </children>
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </HBox>
+            </children>
+        </HBox>
+    </top>
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" onMouseDragged="#handleDragged" onMousePressed="#handlePressed" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="338.0" text="JavaFx" textAlignment="CENTER" textFill="#666ad1">
                <font>
@@ -25,7 +42,7 @@
                   <Insets bottom="15.0" />
                </padding>
             </Label>
-            <JFXButton fx:id="botonArchivo" buttonType="RAISED" focusTraversable="false" prefHeight="42.0" prefWidth="154.0" style="-fx-background-color: #39399F;" text="Search" textFill="#e5e9e0">
+            <JFXButton fx:id="botonArchivo" buttonType="RAISED" focusTraversable="false" onMouseClicked="#seleccionarArchivo" prefHeight="42.0" prefWidth="154.0" style="-fx-background-color: #39399F;" text="Search" textFill="#e5e9e0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

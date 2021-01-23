@@ -6,6 +6,9 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.DirectoryChooser;
 import model.TreeMap;
 
@@ -13,20 +16,26 @@ import model.TreeMap;
  * FXML Controller class
  *
  * @author Ac 001
+ * @author Danny Loor
  */
 public class SelectionWindowController implements Initializable {
 
+    Ventana ventana;
+
     @FXML
     Button botonArchivo;
+    @FXML
+    Circle btnClose, btnMinimize;
+    @FXML
+    BorderPane baseScreen;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        botonArchivo.setOnMouseClicked((e) -> {
-            seleccionarArchivo();
-        });
+        ventana = new Ventana();
     }
 
-    private void seleccionarArchivo() {
+    @FXML
+    public void seleccionarArchivo(MouseEvent e) {
         DirectoryChooser buscarDirectorio = new DirectoryChooser();
         buscarDirectorio.setTitle("Elegir directorio");
         File selectedDirectory = buscarDirectorio.showDialog(null);
@@ -34,5 +43,25 @@ public class SelectionWindowController implements Initializable {
             TreeMap tm = new TreeMap(selectedDirectory);
             tm.draw();
         }
+    }
+
+    @FXML
+    public void handlePressed(MouseEvent e) {
+        ventana.setPosicion(e);
+    }
+
+    @FXML
+    public void handleDragged(MouseEvent e) {
+        ventana.move(e);
+    }
+
+    @FXML
+    public void handleMin(MouseEvent e) {
+        ventana.minimize();
+    }
+
+    @FXML
+    public void handleClose(MouseEvent e) {
+        ventana.close();
     }
 }
