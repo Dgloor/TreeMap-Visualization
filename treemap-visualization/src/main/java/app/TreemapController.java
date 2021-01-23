@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import model.TreeMap;
 
@@ -16,11 +17,15 @@ import model.TreeMap;
 public class TreemapController implements Initializable {
 
     @FXML
+    AnchorPane ap;
+    
+    @FXML
     HBox base;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         base.setSpacing(2);
+        TreeMap.ap = ap;
         TreeMap.base = base;
         setExitEvent();
     }

@@ -5,8 +5,11 @@ import miscellaneous.ColorAssigner;
 import app.App;
 import java.io.File;
 import java.io.IOException;
+import java.util.Comparator;
+import java.util.LinkedList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -14,6 +17,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import model.Pesable;
+import model.Tree;
 
 /**
  *
@@ -21,11 +26,14 @@ import javafx.scene.paint.Color;
  */
 public class TreeMap {
 
+    public static AnchorPane ap;
     public static HBox base;
     public Tree<Pesable> tree;
+    private LinkedList<Tree<Pesable>> primeros;
 
     public TreeMap(File root) {
         tree = createDirectoryTree(root);
+        primeros = tree.getChildren();
     }
 
     private Tree<Pesable> createDirectoryTree(File f) {
@@ -41,6 +49,10 @@ public class TreeMap {
                             newFile.length()));
                 }
                 t.getChildren().add(newTree);
+                t.getChildren().sort((Tree<Pesable> t1, Tree<Pesable> t2) -> {
+                    double d = (double) t2.getRoot().getWeight() - t1.getRoot().getWeight();
+                    return (int) d;
+                });
             }
         }
         return t;
@@ -101,10 +113,7 @@ public class TreeMap {
             if (base instanceof VBox) {
                 HBox hb = new HBox();
 
-                if (i == 0) {
-                    setPaneTitle(hb, pesable.getRoot());
-                }
-
+                
                 hb.setSpacing(2);
                 hb.setPrefHeight(
                         base.getPrefHeight()
@@ -115,6 +124,18 @@ public class TreeMap {
                 setPaneColor(hb, p.getRoot());
 
                 base.getChildren().add(hb);
+////                if (this.primeros.contains(p)) {
+////                    Label lbl = new Label(p.getRoot().toString());
+////                    long total = 0;
+////                    for(int j = primeros.indexOf(p); j > 0;j--){
+////                        total += primeros.get(j).getRoot().getWeight();
+////                    }
+////                    lbl.setLayoutX(base.getPrefHeight()
+////                        * ((double) total
+////                        / pesable.getRoot().getWeight()));
+//////                    lbl.setLayoutY(hb.getLayoutY());
+////                    ap.getChildren().add(lbl);
+////                }
                 if (!p.isLeaf()) {
                     fillPane(p, hb);
                 }
@@ -122,10 +143,7 @@ public class TreeMap {
             } else if (base instanceof HBox) {
                 VBox vb = new VBox();
 
-                if (i == 0) {
-                    setPaneTitle(vb, pesable.getRoot());
-                }
-
+                
                 vb.setSpacing(2);
                 vb.setPrefWidth(
                         base.getPrefWidth()
@@ -136,6 +154,22 @@ public class TreeMap {
                 setPaneColor(vb, p.getRoot());
 
                 base.getChildren().add(vb);
+                if (this.primeros.contains(p)) {
+                    Label lbl = new Label(p.getRoot().toString());
+                            lbl.setTextFill(Color.WHITE);
+        Background bg = getBackgroundFromColor(Color.BLACK);
+        lbl.setBackground(bg);
+                    long total = 0;
+                    for(int j = primeros.indexOf(p)-1; j >= 0;j--){
+                        total +=  (1280
+                        * ((double) primeros.get(j).getRoot().getWeight()
+                        / tree.getRoot().getWeight()));
+//                        total += primeros.get(j).getRoot().getWeight();
+                    }
+                    lbl.setLayoutX((double) total);
+//                    lbl.setLayoutY(hb.getLayoutY());
+                    ap.getChildren().add(lbl);
+                }
                 if (!p.isLeaf()) {
                     fillPane(p, vb);
                 }
